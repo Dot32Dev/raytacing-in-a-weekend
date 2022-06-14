@@ -30,7 +30,7 @@ fn main() {
                 0.25
             );
 
-            println!("{}", pixel_color);
+            println!("{}", pixel_color.format_color());
         }
     }
     eprintln!("\nDone.");

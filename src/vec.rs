@@ -68,14 +68,12 @@ impl Vec3 {
     //     self[0].abs() < EPS && self[1].abs() < EPS && self[2].abs() < EPS
     // }
 
-    // pub fn format_color(self, samples_per_pixel: u64) -> String {
-    //     let ir = (256.0 * (self[0] / (samples_per_pixel as f64)).sqrt().clamp(0.0, 0.999)) as u64;
-    //     let ig = (256.0 * (self[1] / (samples_per_pixel as f64)).sqrt().clamp(0.0, 0.999)) as u64;
-    //     let ib = (256.0 * (self[2] / (samples_per_pixel as f64)).sqrt().clamp(0.0, 0.999)) as u64;
+    pub fn format_color(self) -> String {
+        format!("{} {} {}", (255.999 * self[0]) as u64,
+                            (255.999 * self[1]) as u64,
+                            (255.999 * self[2]) as u64)
+    }
 
-    //     format!("{} {} {}", ir, ig, ib)
-    // }
-    
 }
 
 impl Display for Vec3 {
