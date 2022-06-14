@@ -7,5 +7,6 @@ Currently the program outputs an image format, which you place into a file by ru
 ```bash
 cargo run > image.ppm
 ```
-
-![current image](/image.ppm)
+I will update this image to display the progress i have made
+(For a more up-to-date version, see the .ppm file)
+![current image](/image.png)
