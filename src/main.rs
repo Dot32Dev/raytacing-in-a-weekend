@@ -1,4 +1,6 @@
+mod vec;
 use std::io::{stderr, Write};
+use vec::{Vec3, Color};
 
 fn main() {
     const IMAGE_WIDTH: u64 = 256;
@@ -13,15 +15,22 @@ fn main() {
         stderr().flush().unwrap();
 
         for i in 0..IMAGE_HEIGHT {
-            let r = (i as f64) / ((IMAGE_WIDTH - 1) as f64);
-            let g = (j as f64) / ((IMAGE_HEIGHT - 1) as f64);
-            let b = 0.25;
+            // let r = (i as f64) / ((IMAGE_WIDTH - 1) as f64);
+            // let g = (j as f64) / ((IMAGE_HEIGHT - 1) as f64);
+            // let b = 0.25;
 
-            let ir = (255.999 * r) as u64;
-            let ig = (255.999 * g) as u64;
-            let ib = (255.999 * b) as u64;
+            // let ir = (255.999 * r) as u64;
+            // let ig = (255.999 * g) as u64;
+            // let ib = (255.999 * b) as u64;
 
-            println!("{} {} {}", ir, ig, ib);
+            // println!("{} {} {}", ir, ig, ib);
+            let pixel_color = Color::new(
+                (i as f64) / ((IMAGE_WIDTH - 1) as f64), 
+                (j as f64) / ((IMAGE_HEIGHT - 1) as f64), 
+                0.25
+            );
+
+            println!("{}", pixel_color);
         }
     }
     eprintln!("\nDone.");
