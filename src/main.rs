@@ -13,9 +13,11 @@ fn ray_color(r: &Ray) -> Color {
 
 fn main() {
     // Image
-    const ASPECT_RATIO: f64 = 16.0 / 9.0;
-    const IMAGE_WIDTH: u64 = 256;
-    const IMAGE_HEIGHT: u64 = ((256 as f64) / ASPECT_RATIO) as u64;
+    // const ASPECT_RATIO: f64 = 16.0 / 9.0;
+    const IMAGE_SIZE: u64 = 800;
+    const ASPECT_RATIO: f64 = 4.0 / 3.0;
+    const IMAGE_WIDTH: u64 = IMAGE_SIZE;
+    const IMAGE_HEIGHT: u64 = ((IMAGE_SIZE as f64) / ASPECT_RATIO) as u64;
 
     // Camera
     let viewport_height = 2.0;
