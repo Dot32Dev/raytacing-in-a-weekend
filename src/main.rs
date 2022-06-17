@@ -33,7 +33,7 @@ fn ray_color(r: &Ray) -> Color {
     if t > 0.0 {
         let n = (r.at(t) - Vec3::new(0.0, 0.0, -1.0)).normalized();
         // return 0.5 * Color::new(n.x() + 1.0, n.y() + 1.0, n.z() + 1.0);
-        return 0.5 * Color::new(2.0, n.y() + 1.0, 0.0);
+        return 0.5 * Color::new(1.0 + n.z(), n.y() + 1.0, 0.0);
     }
     let unit_direction = r.direction().normalized();
     let t = 0.5 * (unit_direction.y() + 1.0); //recenters y
