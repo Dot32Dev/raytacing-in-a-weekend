@@ -10,19 +10,30 @@ const ASPECT_RATIO: f64 = 4.0 / 3.0;
 const IMAGE_WIDTH: u64 = IMAGE_SIZE;
 const IMAGE_HEIGHT: u64 = ((IMAGE_SIZE as f64) / ASPECT_RATIO) as u64;
 
-fn hit_sphere(center: Point3, radius: f64, r: &Ray) -> bool {
+fn hit_sphere(center: Point3, radius: f64, r: &Ray) -> f64 {
     let oc = r.origin() - center; // distance between ray origin and circle origin 
     let a = r.direction().dot(r.direction()); 
-    
+
     let b = 2.0 * oc.dot(r.direction());
     let c = oc.dot(oc) - radius * radius;
     let discriminant = b * b - 4.0 * a * c;
-    discriminant > 0.0
+
+    if discriminant < 0.0 {
+        -1.0
+    } else {
+        (-b - discriminant.sqrt()) / (2.0 * a)
+    }
 }
 
 fn ray_color(r: &Ray) -> Color {
-    if hit_sphere(Point3::new(0.0, 0.0, -1.0), 0.5, r) {
-        return Color::new(1.0, 0.0, 0.0);
+    // if hit_sphere(Point3::new(0.0, 0.0, -1.0), 0.5, r) {
+    //     return Color::new(1.0, 0.0, 0.0);
+    // }
+    let t = hit_sphere(Point3::new(0.0, 0.0, -1.0), 0.5, r);
+    if t > 0.0 {
+        let n = (r.at(t) - Vec3::new(0.0, 0.0, -1.0)).normalized();
+        // return 0.5 * Color::new(n.x() + 1.0, n.y() + 1.0, n.z() + 1.0);
+        return 0.5 * Color::new(2.0, n.y() + 1.0, 0.0);
     }
     let unit_direction = r.direction().normalized();
     let t = 0.5 * (unit_direction.y() + 1.0); //recenters y
